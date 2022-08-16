@@ -16,7 +16,7 @@ class Stack<E> {
     }
 
     public push(E data) {
-        let node = new ListNode(data, top)
+        let node = ListNode(data, top)
         top = node
 
         count++
@@ -24,7 +24,7 @@ class Stack<E> {
 
     public pop() -> E {
         if (isEmpty) {
-            throw new EmptyStackException()
+            throw EmptyStackException()
         }
 
         E data = top.data

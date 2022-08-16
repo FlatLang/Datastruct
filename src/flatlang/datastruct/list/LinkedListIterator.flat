@@ -21,7 +21,7 @@ class LinkedListIterator<E> implements Iterator<E> {
                 return data
             }
 
-            throw new NoSuchElementException()
+            throw NoSuchElementException()
         }
 
         no set

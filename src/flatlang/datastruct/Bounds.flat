@@ -117,5 +117,5 @@ class Bounds {
      *
      * @return The new Bounds instance.
      */
-    public clone() => new Bounds(start, end)
+    public clone() => Bounds(start, end)
 }

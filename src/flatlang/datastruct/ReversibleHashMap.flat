@@ -6,7 +6,7 @@ class ReversibleHashMap<K extends EqualsOperator, V extends EqualsOperator> exte
     HashMap<V, K> rev
 
     public construct() {
-        rev = new HashMap()
+        rev = HashMap()
     }
 
     public add(K key, V value) => value {

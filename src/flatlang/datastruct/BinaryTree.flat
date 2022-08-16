@@ -14,7 +14,7 @@ class BinaryTree<E extends Comparable> extends Tree<E> {
         if (root) {
             root.addChild(data)
         } else {
-            root = new BinaryNode(data)
+            root = BinaryNode(data)
         }
     }
 

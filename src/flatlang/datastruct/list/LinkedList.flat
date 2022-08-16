@@ -7,7 +7,7 @@ public class LinkedList<E> implements List<E>
 
 	var visible Int size
 
-	visible LinkedListIterator<E> iterator => new LinkedListIterator(this)
+	visible LinkedListIterator<E> iterator => LinkedListIterator(this)
 
 	public ListNode<E> first => start {
 		set {
@@ -32,7 +32,7 @@ public class LinkedList<E> implements List<E>
 	}
 
 	public add(E data) -> LinkedList<E> {
-		ListNode<E> node = new ListNode(data)
+		ListNode<E> node = ListNode(data)
 
 		if (start) {
 			current.next = node
@@ -79,7 +79,7 @@ public class LinkedList<E> implements List<E>
 
 	[Override]
 	public toArray() -> E[] {
-		E[] array = new Array(size)
+		E[] array = Array(size)
 
 		var Int i = 0
 
@@ -92,7 +92,7 @@ public class LinkedList<E> implements List<E>
 
 	[Override]
 	public map<Out>(mapFunc(E, Int, LinkedList<E>) -> Out) -> LinkedList<Out> {
-		LinkedList<Out> array = new LinkedList()
+		LinkedList<Out> array = LinkedList()
 
 		var Int i = 0
 
@@ -142,7 +142,7 @@ public class LinkedList<E> implements List<E>
 
 	[Override]
 	public filter(filterFunc(E, Int, LinkedList<E>) -> Bool) -> LinkedList<E> {
-		LinkedList<E> filtered = new LinkedList()
+		LinkedList<E> filtered = LinkedList()
 
 		var Int i = 0
 
@@ -161,7 +161,7 @@ public class LinkedList<E> implements List<E>
 			howMany = size
 		}
 
-		LinkedList<E> list = new LinkedList()
+		LinkedList<E> list = LinkedList()
 
 		for (element in this) {
 			if (list.size == howMany) break
@@ -174,7 +174,7 @@ public class LinkedList<E> implements List<E>
 
 	[Override]
 	public skip(Int howMany) -> LinkedList<E> {
-		E[] list = new Array()
+		E[] list = Array()
 
 		var Int i = 0
 
@@ -198,7 +198,7 @@ public class LinkedList<E> implements List<E>
 
 	[Override]
 	public reverse() -> LinkedList<E> {
-		LinkedList<E> list = new LinkedList()
+		LinkedList<E> list = LinkedList()
 
 		var ListNode<E> prev = null
 		var ListNode<E> current = null

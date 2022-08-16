@@ -9,7 +9,7 @@ class Node<E> {
     this[Int index] <=> children[index]
 
     public construct(public E data = null, Int numChildren = 5) {
-        children = new Node<E>[numChildren]
+        children = Array<Node<E>>(numChildren)
     }
 
     public preorder() => preorder(new E[])
@@ -50,7 +50,7 @@ class Node<E> {
     }
 
     levelorder(E[] array) => array {
-        let queue = new Queue<Node<E>>([this])
+        let queue = Queue<Node<E>>([this])
 
         while (!queue.empty) {
             let current = queue.dequeue()

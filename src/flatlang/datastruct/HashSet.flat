@@ -9,7 +9,7 @@ class HashSet<T extends EqualsOperator> implements List<T> {
     visible Int size
 
     public construct(Int bucketCount = 5, private Int bucketSize = 5) {
-        buckets = new Array(bucketCount).map({ new Array<T>(bucketSize) })
+        buckets = Array(bucketCount).map({ Array<T>(bucketSize) })
     }
 
     [Override]

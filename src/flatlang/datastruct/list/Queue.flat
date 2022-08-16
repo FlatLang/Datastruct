@@ -7,15 +7,15 @@ class Queue<E> implements List<E> {
     visible Bool empty => size <= 0
 
     [Override]
-    visible ArrayIterator<E> iterator => new ArrayIterator(data)
+    visible ArrayIterator<E> iterator => ArrayIterator(data)
 
     E[] data
 
-    public construct() => data = new Array()
+    public construct() => data = Array()
     public construct(E[] data) => this.data = data
 
     public dequeue() -> E => data.remove(0)
     public enqueue(E element) => data.add(element)
-    public reverse() => new Queue<E>(data.reverse())
+    public reverse() => Queue<E>(data.reverse())
     public toString() => "Queue [#{join(", ")}]"
 }
