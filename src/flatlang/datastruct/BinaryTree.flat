@@ -1,6 +1,6 @@
-package "flatlang/datastruct"
+package flatlang/datastruct
 
-import "flatlang/datastruct/Comparable"
+import flatlang/datastruct/Comparable
 
 [AutoFinal]
 class BinaryTree<E extends Comparable> extends Tree<E> {

@@ -1,6 +1,6 @@
-package "flatlang/datastruct/list"
+package flatlang/datastruct/list
 
-import "flatlang/datastruct/list/ArrayIterator"
+import flatlang/datastruct/list/ArrayIterator
 
 class Queue<E> implements List<E> {
     visible Int size => data.position
