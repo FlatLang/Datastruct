@@ -247,6 +247,8 @@ class HashMap<K, V> implements List<Pair<K, V>> {
                     return valueIterator.previous
                 } else if (bucketIterator.hasPrevious) {
                     return bucketIterator.previous.last
+                } else {
+                  return null
                 }
             }
         }
@@ -256,6 +258,8 @@ class HashMap<K, V> implements List<Pair<K, V>> {
                     return valueIterator.next
                 } else if (bucketIterator.hasNext) {
                     return bucketIterator.next.first
+                } else {
+                  return null
                 }
             }
         }
