@@ -3,5 +3,8 @@ package flatlang/datastruct
 class Pair<Key, Value> {
     public construct(public Key key, public Value value) {}
 
+    public equals(Object other) => other && other.class.isOfType(Pair.class) && equals((Pair)other)
+    public equals(Pair other) => other && key.equals(other.key) && value.equals(other.value)
+
     public toString() => "Pair (#key, #value)"
 }
