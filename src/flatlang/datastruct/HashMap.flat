@@ -119,6 +119,16 @@ class HashMap<K, V> implements List<Pair<K, V>> {
         return array
     }
 
+    public mapValues<Out>(func(Pair<K, V>, Int, HashMap<K, V>) -> Out) -> HashMap<K, Out> {
+        let map = HashMap<K, Out>()
+
+        forEach((pair, index) => {
+          map.add(pair.key, func(pair, index, this))
+        })
+
+        return map
+    }
+
     [Override]
     public filter(func(Pair<K, V>, Int, HashMap<K, V>) -> Bool) -> Pair<K, V>[] {
         let array = Pair<K, V>[]
