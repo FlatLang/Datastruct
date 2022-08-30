@@ -37,9 +37,13 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     }
 
     public construct(HashMap<K, V> source, Int bucketCount = 5, private Int bucketSize = 5) {
+        this(source.entries, bucketCount, bucketSize)
+    }
+
+    public construct(Array<Pair<K, V>> entries, Int bucketCount = 5, private Int bucketSize = 5) {
         this(bucketCount, bucketSize)
 
-        source.forEach(pair => {
+        entries.forEach((pair) => {
             add(pair.key, pair.value)
         })
     }
