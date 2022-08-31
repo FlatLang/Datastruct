@@ -1,0 +1,43 @@
+package flatlang/datastruct
+
+import flatlang/datastruct/list/List
+
+class HashMap<K, V> {
+  public static jsObjectToFlatHashMap(Object obj) -> HashMap<String, Object> {
+    native var Char[] key
+    native var Object value
+    native var Char[] data
+    native var Long num
+    native var Bool boolValue
+
+    let map = HashMap<String, Object>()
+
+    external {
+      Object.entries(obj).forEach((entry) => {
+        #{key} = entry[0];
+
+        if (typeof entry[1] === 'string') {
+          #{data} = entry[1];
+          #{value} = #{String(data)};
+        } else if (typeof entry[1] === 'number') {
+          #{num} = entry[1];
+          #{value} = #{Long(num)};
+        } else if (typeof entry[1] === 'boolean') {
+          #{boolValue} = entry[1];
+          #{value} = #{Bool(boolValue)};
+        } else if (typeof entry[1] === 'object') {
+          #{value} = entry[1];
+          #{value} = #{jsObjectToFlatHashMap(value)};
+        } else if (typeof entry[1] === 'undefined') {
+          #{value} = #{null};
+        } else {
+          throw new Error("Invalid type: " + (typeof entry[1]));
+        }
+
+        #{map.add(String(key), value)};
+      });
+    }
+
+    return map
+  }
+}
