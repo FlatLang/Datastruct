@@ -4,10 +4,10 @@ import flatlang/exception/UnimplementedOperationException
 
 [AutoFinal]
 class Tree<E> {
-    public construct(public Node<E> root = null) {}
+  public construct(public Node<E> root = null) {}
 
-    public preorder() => root.preorder()
-    public inorder() => root.inorder()
-    public postorder() => root.postorder()
-    public levelorder() => root.levelorder()
+  public preorder() => root.preorder()
+  public inorder() => root.inorder()
+  public postorder() => root.postorder()
+  public levelorder() => root.levelorder()
 }
