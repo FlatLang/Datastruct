@@ -225,7 +225,46 @@ class HashMap<K, V> implements List<Pair<K, V>> {
 
   public toImmutable() => ImmutableHashMap<K, V>(this)
 
-  public toString() => this.class.location + " {" + map(p => { p.key + ": " + p.value }).join(", ") + "}"
+  public toString() => "#{class.location} #{toJson()}"
+
+  formatJsonString(var String value) -> String {
+    value = "#{value}"
+    external {
+      #{value.chars.data} = #{value.chars.data}.replace(/[\\]/g, "\\\\");
+    }
+    let sanitized = value//value.replace("\"", "\\\"")
+
+    return "\"#{sanitized}\""
+  }
+
+  mapJsonValue(Object value, Bool format, String tab) -> String {
+    if (value && value.class.isOfType(String.class)) {
+      return formatJsonString(value.toString())
+    } else if (value && value.class.isOfType(HashMap.class)) {
+      let HashMap valueMap = (HashMap)value
+
+      return valueMap.toJson(format, tab)
+    } else {
+      return value.toString()
+    }
+  }
+
+  public toJson(Bool: format = false, String tab = "\t") -> String {
+    if (format) {
+      let values = map(p => "#{formatJsonString(p.key.toString())}: #{mapJsonValue(p.value, format, tab)}")
+        .join(",\n")
+        .indent(tab: tab)
+
+      return "|
+        {
+        #{tab}#{values}
+        }
+        |"
+    } else {
+      let values = map(p => "#{formatJsonString(p.key.toString())}:" + mapJsonValue(p.value, format, tab)).join(",")
+      return "{#{values}}"
+    }
+  }
 
   [AutoFinal]
   class HashMapIterator<K, V> implements Iterator<Pair<K, V>> {
