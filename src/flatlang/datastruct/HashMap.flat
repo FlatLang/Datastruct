@@ -29,6 +29,8 @@ class HashMap<K, V> implements List<Pair<K, V>> {
   }
 
   visible Pair<K, V>[] entries => filter({ true })
+  visible K[] keys => map({ _.key })
+  visible V[] values => map({ _.value })
 
   visible HashMapIterator<K, V> iterator => HashMapIterator(this)
 
