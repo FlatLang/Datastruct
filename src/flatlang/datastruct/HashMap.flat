@@ -221,6 +221,22 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     }
   }
 
+  public removeAt(Int index) -> Pair<K, V> => null {
+    var Int i = 0
+
+    for (bucket in buckets) {
+      for (pair in bucket) {
+        if (pair) {
+          if (i == index) {
+            bucket.remove(i)
+            return pair
+          }
+          i++
+        }
+      }
+    }
+  }
+
   public containsKey(K key) => key && getPair(key)
 
   public clone() => HashMap<K, V>(this)
