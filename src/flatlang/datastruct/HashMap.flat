@@ -237,6 +237,10 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     }
   }
 
+  public removeWhere(func(Pair<K, V>, Int, HashMap<K, V>) -> Bool) -> Pair<K, V>[] {
+    return filter(func):forEach({ remove(_.key) })
+  }
+
   public containsKey(K key) => key && getPair(key)
 
   public clone() => HashMap<K, V>(this)
