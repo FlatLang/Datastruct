@@ -1,6 +1,6 @@
-package flatlang/datastruct
+package flat/datastruct
 
-import flatlang/datastruct/Comparable
+import flat/datastruct/Comparable
 
 [AutoFinal]
 class BinaryNode<E extends Comparable> extends Node<E> {

@@ -1,6 +1,6 @@
-package flatlang/datastruct
+package flat/datastruct
 
-import flatlang/operators/EqualsOperator
+import flat/operators/EqualsOperator
 
 class ReversibleHashMap<K extends EqualsOperator, V extends EqualsOperator> extends HashMap<K, V> {
   HashMap<V, K> rev

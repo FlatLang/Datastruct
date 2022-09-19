@@ -1,4 +1,4 @@
-package flatlang/datastruct
+package flat/datastruct
 
 class Tuple2<A, B> extends Tuple {
   public A item1 <=> (A)items[0]

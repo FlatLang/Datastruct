@@ -1,4 +1,4 @@
-package flatlang/datastruct
+package flat/datastruct
 
 testable class {
   test `can create`() {

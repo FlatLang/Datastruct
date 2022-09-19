@@ -1,6 +1,6 @@
-package flatlang/datastruct
+package flat/datastruct
 
-import flatlang/datastruct/list/Queue
+import flat/datastruct/list/Queue
 
 [AutoFinal]
 class Node<E> {

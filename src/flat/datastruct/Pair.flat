@@ -1,4 +1,4 @@
-package flatlang/datastruct
+package flat/datastruct
 
 class Pair<Key, Value> {
   public construct(public Key key, public Value value) {}

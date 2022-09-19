@@ -1,4 +1,4 @@
-package flatlang/datastruct
+package flat/datastruct
 
 /**
  * Class used to store data about a start and end location.
