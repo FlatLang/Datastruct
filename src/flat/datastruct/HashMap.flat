@@ -56,6 +56,16 @@ class HashMap<K, V> implements List<Pair<K, V>> {
   public addAll(HashMap<K, V> map) => map.entries.forEach({ add(_) })
 
   public getOrDefault(K key, defaultValue() -> V) -> V => containsKey(key) ? this[key] : add(key, defaultValue())
+  public getAndRemove(K key) -> V {
+    if (containsKey(key)) {
+      let value = this[key]
+      remove(key)
+
+      return value
+    } else {
+      return null
+    }
+  }
 
   [Override]
   public toArray() => map({ _ })
