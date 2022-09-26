@@ -3,7 +3,6 @@ package flat/datastruct
 import flat/datastruct/list/List
 import flat/datastruct/list/Iterator
 import flat/datastruct/list/NoSuchElementException
-import flat/operators/EqualsOperator
 
 [AutoFinal]
 [Immutable "ImmutableHashMap"]
