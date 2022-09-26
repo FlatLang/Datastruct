@@ -52,7 +52,7 @@ class Node<E> {
   levelorder(E[] array) => array {
     let queue = Queue<Node<E>>([this])
 
-    while (!queue.empty) {
+    while (!queue.isEmpty) {
       let current = queue.dequeue()
 
       array.add(current.data)

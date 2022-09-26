@@ -3,16 +3,17 @@ package flat/datastruct/list
 import flat/datastruct/list/ArrayIterator
 
 class Queue<E> implements List<E> {
-  visible Int size => data.position
-  visible Bool empty => size <= 0
+  visible Int count => data.count
 
-  [Override]
-  visible ArrayIterator<E> iterator => ArrayIterator(data)
+  override visible ArrayIterator<E> iterator => ArrayIterator(data)
+
+  public E first <=> data.first
+  public E last <=> data.last
 
   E[] data
 
   public construct() => data = Array()
-  public construct(E[] data) => this.data = data
+  public construct(List<E> data) => this.data = data.toArray()
 
   public dequeue() -> E => data.remove(0)
   public enqueue(E element) => data.add(element)
