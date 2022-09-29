@@ -39,6 +39,8 @@ class Stack<E> {
 
   public peek() -> E => isEmpty ? null : top.data
 
+  public copy() => Stack<E>(toArray())
+
   public toArray() -> E[] {
     let array = E[]
     var current = top
