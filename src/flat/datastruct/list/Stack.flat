@@ -38,4 +38,17 @@ class Stack<E> {
   }
 
   public peek() -> E => isEmpty ? null : top.data
+
+  public toArray() -> E[] {
+    let array = E[]
+    var current = top
+
+    while (current != null) {
+      array.add(current.data)
+
+      current = current.next
+    }
+
+    return array
+  }
 }
