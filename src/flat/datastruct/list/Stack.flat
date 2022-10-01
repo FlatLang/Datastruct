@@ -18,7 +18,7 @@ class Stack<E> {
 
   construct(this ListNode<E> top) {}
 
-  public push(E data) {
+  public push(E data) => data {
     let node = ListNode(data, top)
     top = node
 
