@@ -16,6 +16,8 @@ class Stack<E> {
     }
   }
 
+  construct(this ListNode<E> top) {}
+
   public push(E data) {
     let node = ListNode(data, top)
     top = node
@@ -35,6 +37,15 @@ class Stack<E> {
     count--
 
     return data
+  }
+
+  public clear() -> Stack<E> {
+    let copy = Stack<E>(top)
+
+    top = null
+    count = 0
+
+    return copy
   }
 
   public peek() -> E => isEmpty ? null : top.data
