@@ -69,6 +69,8 @@ class HashMap<K, V> implements List<Pair<K, V>> {
   [Override]
   public toArray() => map({ _ })
 
+  public copy() => HashMap<K, V>(toArray())
+
   // [Override]
   // public contains(Pair<K, V> value) =>
   //   (let pair = getPair(value.key)) &&
