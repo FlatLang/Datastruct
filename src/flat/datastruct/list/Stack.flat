@@ -53,7 +53,7 @@ class Stack<E> {
   public copy() => Stack<E>(toArray())
 
   public toArray() -> E[] {
-    let array = E[]
+    let array = Array<E>(count)
     var current = top
 
     while (current != null) {
