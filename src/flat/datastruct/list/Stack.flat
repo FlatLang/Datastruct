@@ -57,7 +57,7 @@ class Stack<E> {
     var current = top
 
     while (current != null) {
-      array.add(current.data)
+      array.unshift(current.data)
 
       current = current.next
     }
