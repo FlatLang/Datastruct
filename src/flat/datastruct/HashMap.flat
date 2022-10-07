@@ -4,7 +4,6 @@ import flat/datastruct/list/List
 import flat/datastruct/list/Iterator
 import flat/datastruct/list/NoSuchElementException
 
-[AutoFinal]
 [Immutable "ImmutableHashMap"]
 class HashMap<K, V> implements List<Pair<K, V>> {
   Pair<K, V>[][] buckets

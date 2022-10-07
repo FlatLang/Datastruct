@@ -2,7 +2,6 @@ package flat/datastruct
 
 import flat/datastruct/list/Queue
 
-[AutoFinal]
 class Node<E> {
   visible Node<E>[] children
 
