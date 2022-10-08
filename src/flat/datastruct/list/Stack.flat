@@ -71,4 +71,6 @@ class Stack<E> {
 
     return array
   }
+
+  override public toString() => toArray().toString()
 }
