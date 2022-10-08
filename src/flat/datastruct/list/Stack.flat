@@ -48,7 +48,14 @@ class Stack<E> {
     return copy
   }
 
-  public peek() -> E => isEmpty ? null : top.data
+  public peek(var Int offset = 0) -> E {
+    var current = top
+    while (current && offset-- > 0) {
+      current = current.next
+    }
+
+    return current.data
+  }
 
   public copy() => Stack<E>(toArray())
 
