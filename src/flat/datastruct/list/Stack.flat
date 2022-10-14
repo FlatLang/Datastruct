@@ -49,6 +49,8 @@ class Stack<E> {
   }
 
   public peek(var Int offset = 0) -> E {
+    if (!top) return null
+
     var current = top
     while (current && offset-- > 0) {
       current = current.next
