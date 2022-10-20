@@ -43,7 +43,7 @@ class HashSet<T extends EqualsOperator> implements List<T> {
   }
 
   override public map<Out>(func(T, Int, HashSet<T>) -> Out) -> Out[] {
-    let array = new Out[]
+    let array = Out[]
 
     var Int i = 0
 
@@ -59,7 +59,7 @@ class HashSet<T extends EqualsOperator> implements List<T> {
   }
 
   override public filter(func(T, Int, HashSet<T>) -> Bool) -> T[] {
-    let array = new T[]
+    let array = T[]
 
     var Int i = 0
 

@@ -110,7 +110,7 @@ class HashMap<K, V> implements List<Pair<K, V>> {
   }
 
   override public map<Out>(func(Pair<K, V>, Int, HashMap<K, V>) -> Out) -> Out[] {
-    let array = new Out[]
+    let array = Out[]
 
     var Int i = 0
 
