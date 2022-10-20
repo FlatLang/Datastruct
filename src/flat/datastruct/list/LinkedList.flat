@@ -72,13 +72,11 @@ public class LinkedList<E> implements List<E>
 		return this
 	}
 
-	[Override]
-	public contains(E value) -> Bool {
+	override public contains(E value) -> Bool {
 	    return any({ _ == value })
 	}
 
-	[Override]
-	public toArray() -> E[] {
+	override public toArray() -> E[] {
 		E[] array = Array(size)
 
 		var Int i = 0
@@ -90,8 +88,7 @@ public class LinkedList<E> implements List<E>
 		return array
 	}
 
-	[Override]
-	public map<Out>(mapFunc(E, Int, LinkedList<E>) -> Out) -> LinkedList<Out> {
+	override public map<Out>(mapFunc(E, Int, LinkedList<E>) -> Out) -> LinkedList<Out> {
 		LinkedList<Out> array = LinkedList()
 
 		var Int i = 0
@@ -103,8 +100,7 @@ public class LinkedList<E> implements List<E>
 		return array
 	}
 
-	[Override]
-	public forEach(func(E, Int, LinkedList<E>)) => this {
+	override public forEach(func(E, Int, LinkedList<E>)) => this {
 		var Int i = 0
 
 		for (element in this) {
@@ -112,8 +108,7 @@ public class LinkedList<E> implements List<E>
 		}
 	}
 
-	[Override]
-	public any(anyFunc(E) -> Bool) -> Bool {
+	override public any(anyFunc(E) -> Bool) -> Bool {
 		for (element in this) {
 			if (anyFunc(element)) {
 				return true
@@ -123,8 +118,7 @@ public class LinkedList<E> implements List<E>
 		return false
 	}
 
-	[Override]
-	public all(allFunc(E) -> Bool, Bool stopOnContradiction = true) -> Bool {
+	override public all(allFunc(E) -> Bool, Bool stopOnContradiction = true) -> Bool {
 		var contradiction = false
 
 		for (element in this) {
@@ -140,8 +134,7 @@ public class LinkedList<E> implements List<E>
 		return !contradiction
 	}
 
-	[Override]
-	public filter(filterFunc(E, Int, LinkedList<E>) -> Bool) -> LinkedList<E> {
+	override public filter(filterFunc(E, Int, LinkedList<E>) -> Bool) -> LinkedList<E> {
 		LinkedList<E> filtered = LinkedList()
 
 		var Int i = 0
@@ -155,8 +148,7 @@ public class LinkedList<E> implements List<E>
 		return filtered
 	}
 
-	[Override]
-	public take(var Int howMany) -> LinkedList<E> {
+	override public take(var Int howMany) -> LinkedList<E> {
 		if (howMany > size) {
 			howMany = size
 		}
@@ -172,8 +164,7 @@ public class LinkedList<E> implements List<E>
 		return list
 	}
 
-	[Override]
-	public skip(Int howMany) -> LinkedList<E> {
+	override public skip(Int howMany) -> LinkedList<E> {
 		E[] list = Array()
 
 		var Int i = 0
@@ -185,8 +176,7 @@ public class LinkedList<E> implements List<E>
 		return list
 	}
 
-	[Override]
-	public firstWhere(func(E) -> Bool) -> E {
+	override public firstWhere(func(E) -> Bool) -> E {
 		for (element in this) {
 			if (func(element)) {
 				return element
@@ -196,8 +186,7 @@ public class LinkedList<E> implements List<E>
 		return null
 	}
 
-	[Override]
-	public reverse() -> LinkedList<E> {
+	override public reverse() -> LinkedList<E> {
 		LinkedList<E> list = LinkedList()
 
 		var ListNode<E> prev = null

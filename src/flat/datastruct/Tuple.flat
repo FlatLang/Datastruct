@@ -13,17 +13,17 @@ class Tuple implements List<Object> {
 	public Object first <=> items.first
 	public Object last <=> items.last
 
-	[Override] public contains(Object value) => items.contains(value)
-	[Override] public toArray() => items.toArray()
-	[Override] public forEach(func(Object, Int, List<Object>)) => items.forEach(func)
-	[Override] public any(anyFunc(Object, Int, List<Object>) -> Bool) => items.any(anyFunc)
-	[Override] public all(allFunc(Object, Int, List<Object>) -> Bool, passing Bool stopOnContradiction) => items.all(allFunc, stopOnContradiction)
-	[Override] public filter(filterFunc(Object, Int, List<Object>) -> Bool) => items.filter(filterFunc)
-	[Override] public take(Int howMany) => items.take(howMany)
-	[Override] public skip(Int howMany) => items.skip(howMany)
-	[Override] public firstWhere(func(Object) -> Bool) => items.firstWhere(func)
-	[Override] public reverse() => Tuple(items.reverse())
-	[Override] public map<Out>(mapFunc(Object, Int, List<Object>) -> Out) -> List<Object> {
+	override public contains(Object value) => items.contains(value)
+	override public toArray() => items.toArray()
+	override public forEach(func(Object, Int, List<Object>)) => items.forEach(func)
+	override public any(anyFunc(Object, Int, List<Object>) -> Bool) => items.any(anyFunc)
+	override public all(allFunc(Object, Int, List<Object>) -> Bool, passing Bool stopOnContradiction) => items.all(allFunc, stopOnContradiction)
+	override public filter(filterFunc(Object, Int, List<Object>) -> Bool) => items.filter(filterFunc)
+	override public take(Int howMany) => items.take(howMany)
+	override public skip(Int howMany) => items.skip(howMany)
+	override public firstWhere(func(Object) -> Bool) => items.firstWhere(func)
+	override public reverse() => Tuple(items.reverse())
+	override public map<Out>(mapFunc(Object, Int, List<Object>) -> Out) -> List<Object> {
 		return items.map(mapFunc)
 	}
 }

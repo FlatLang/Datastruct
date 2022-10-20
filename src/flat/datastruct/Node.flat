@@ -62,6 +62,5 @@ class Node<E> {
     }
   }
 
-  [Override]
-  public toString() => "#data"
+  override public toString() => "#data"
 }

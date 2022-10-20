@@ -12,11 +12,9 @@ class HashSet<T extends EqualsOperator> implements List<T> {
     buckets = Array(bucketCount).map({ Array<T>(bucketSize) })
   }
 
-  [Override]
-  public toArray() => map({ _ })
+  override public toArray() => map({ _ })
 
-  [Override]
-  public any(func(T) -> Bool) => false {
+  override public any(func(T) -> Bool) => false {
     for (bucket in buckets) {
       for (v in bucket) {
         if (v && func(v)) {
@@ -26,8 +24,7 @@ class HashSet<T extends EqualsOperator> implements List<T> {
     }
   }
 
-  [Override]
-  public all(func(T) -> Bool, Bool stopOnContradiction = true) -> Bool {
+  override public all(func(T) -> Bool, Bool stopOnContradiction = true) -> Bool {
     var contradiction = false
 
     for (bucket in buckets) {
@@ -45,8 +42,7 @@ class HashSet<T extends EqualsOperator> implements List<T> {
     return !contradiction
   }
 
-  [Override]
-  public map<Out>(func(T, Int, HashSet<T>) -> Out) -> Out[] {
+  override public map<Out>(func(T, Int, HashSet<T>) -> Out) -> Out[] {
     let array = new Out[]
 
     var Int i = 0
@@ -62,8 +58,7 @@ class HashSet<T extends EqualsOperator> implements List<T> {
     return array
   }
 
-  [Override]
-  public filter(func(T, Int, HashSet<T>) -> Bool) -> T[] {
+  override public filter(func(T, Int, HashSet<T>) -> Bool) -> T[] {
     let array = new T[]
 
     var Int i = 0
@@ -104,12 +99,11 @@ class HashSet<T extends EqualsOperator> implements List<T> {
     return output
   }
 
-  [Override] public skip(Int num) => map({ _ }).skip(num)
-  [Override] public take(Int num) => map({ _ }).take(num)
-  [Override] public reverse() => map({ _ }).reverse()
+  override public skip(Int num) => map({ _ }).skip(num)
+  override public take(Int num) => map({ _ }).take(num)
+  override public reverse() => map({ _ }).reverse()
 
-  [Override]
-  public firstWhere(func(T) -> Bool) -> T => null {
+  override public firstWhere(func(T) -> Bool) -> T => null {
     for (bucket in buckets) {
       for (v in bucket) {
         if (v && func(v)) {
@@ -119,8 +113,7 @@ class HashSet<T extends EqualsOperator> implements List<T> {
     }
   }
 
-  [Override]
-  public forEach(func(T, Int, HashSet<T>)) => this {
+  override public forEach(func(T, Int, HashSet<T>)) => this {
     var Int i = 0
 
     for (bucket in buckets) {
@@ -156,8 +149,7 @@ class HashSet<T extends EqualsOperator> implements List<T> {
     }
   }
 
-  [Override]
-  public contains(T value) => value && get(value)
+  override public contains(T value) => value && get(value)
 
   public toString() => "HashSet [#{join(", ")}]"
 }
