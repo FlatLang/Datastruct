@@ -158,8 +158,12 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     return array
   }
 
-  [Override]
-  public join(String delimiter) -> String {
+  override public join(
+    String delimiter = "",
+    var Int maxOutputCount = count,
+    Int ellipsePosition = maxOutputCount / 2 + 1,
+    String ellipse = "..."
+  ) -> String {
     var Int i = 0
 
     var output = ""
