@@ -1,6 +1,6 @@
 package flat/datastruct/list
 
-public class LinkedList<E> implements List<E>
+class LinkedList<E> implements List<E>
 {
 	var ListNode<E>	start
 	var ListNode<E>	current
