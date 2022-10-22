@@ -23,8 +23,6 @@ class LinkedListIterator<E> implements Iterator<E> {
 
       throw NoSuchElementException()
     }
-
-    no set
   }
 
   visible E current => position?.data
