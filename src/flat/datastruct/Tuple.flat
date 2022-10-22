@@ -17,7 +17,7 @@ class Tuple implements List<Object> {
 	override public toArray() => items.toArray()
 	override public forEach(func(Object, Int, List<Object>)) => items.forEach(func)
 	override public any(anyFunc(Object, Int, List<Object>) -> Bool) => items.any(anyFunc)
-	override public all(allFunc(Object, Int, List<Object>) -> Bool, passing Bool stopOnContradiction) => items.all(allFunc, stopOnContradiction)
+	override public all(allFunc(Object, Int, List<Object>) -> Bool, Bool stopOnContradiction) => items.all(allFunc, stopOnContradiction)
 	override public filter(filterFunc(Object, Int, List<Object>) -> Bool) => items.filter(filterFunc)
 	override public take(Int howMany) => items.take(howMany)
 	override public skip(Int howMany) => items.skip(howMany)
