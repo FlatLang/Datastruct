@@ -51,7 +51,7 @@ class LinkedList<E> implements List<E>
 
 	public remove(E data) -> LinkedList<E> {
 		if (start.data == data) {
-			start = start.next;
+			start = start.next
 		}
 
 		var ListNode<E> prev = start

@@ -63,7 +63,7 @@ class HashMap<K, V> {
       });
     }
 
-    return jsArray;
+    return jsArray
   }
 
   static toJsonValue(Object obj) -> Object => null {
@@ -85,7 +85,7 @@ class HashMap<K, V> {
     } else if (obj.class.isOfType(HashMap.class)) {
       let HashMap map = (HashMap)obj
 
-      return map.toJsObject();
+      return map.toJsObject()
     } else {
       throw Exception("Invalid type: #{obj.class}")
     }
