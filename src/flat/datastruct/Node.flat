@@ -11,10 +11,10 @@ class Node<E> {
     children = Array<Node<E>>(numChildren)
   }
 
-  public preorder() => preorder(new E[])
-  public inorder() => inorder(new E[])
-  public postorder() => postorder(new E[])
-  public levelorder() => levelorder(new E[])
+  public preorder() => preorder(E[])
+  public inorder() => inorder(E[])
+  public postorder() => postorder(E[])
+  public levelorder() => levelorder(E[])
 
   preorder(E[] array) => array {
     array.add(data)
