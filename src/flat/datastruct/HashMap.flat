@@ -314,8 +314,6 @@ class HashMap<K, V> implements List<Pair<K, V>> {
 
         throw NoSuchElementException()
       }
-
-      no set
     }
 
     visible Pair<K, V> current => valueIterator?.current
