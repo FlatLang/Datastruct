@@ -1,6 +1,8 @@
 package flat/datastruct
 
 import flat/datastruct/list/List
+import flat/datastruct/list/Iterator
+import flat/datastruct/list/NoSuchElementException
 import flat/operators/EqualsOperator
 
 class HashSet<T extends EqualsOperator> implements List<T> {
@@ -8,8 +10,15 @@ class HashSet<T extends EqualsOperator> implements List<T> {
 
   visible Int size
 
+  visible HashSetIterator<T> iterator => HashSetIterator(this)
+
   public construct(Int bucketCount = 5, private Int bucketSize = 5) {
     buckets = Array(bucketCount).map({ Array<T>(bucketSize) })
+  }
+
+  public construct(T[] values, Int bucketCount = 5, private Int bucketSize = 5) {
+    this(bucketCount, bucketSize)
+    values.forEach({ add(_) })
   }
 
   override public toArray() => map({ _ })
@@ -152,4 +161,63 @@ class HashSet<T extends EqualsOperator> implements List<T> {
   override public contains(T value) => value && get(value)
 
   public toString() => "HashSet [#{join(", ")}]"
+
+  class HashSetIterator<K> implements Iterator<K> {
+    visible var Int position
+
+    var Iterator<Array<K>> bucketIterator
+    var Iterator<K> valueIterator
+
+    visible Bool hasNext => position < set.count && (bucketIterator.hasNext || valueIterator?.hasNext)
+    visible Bool hasPrevious => bucketIterator.hasPrevious || valueIterator?.hasPrevious
+
+    visible K stepNext {
+      get {
+        if (valueIterator?.hasNext) {
+          position++
+          return valueIterator.stepNext
+        } else if (bucketIterator.hasNext) {
+          position++
+          valueIterator = bucketIterator.stepNext.iterator
+          return valueIterator.stepNext
+        }
+
+        throw NoSuchElementException()
+      }
+    }
+
+    visible K current => valueIterator?.current
+    visible K previous {
+      get {
+        if (valueIterator?.hasPrevious) {
+          return valueIterator.previous
+        } else if (bucketIterator.hasPrevious) {
+          return bucketIterator.previous.last
+        } else {
+          return null
+        }
+      }
+    }
+    visible K next {
+      get {
+        if (valueIterator?.hasNext) {
+          return valueIterator.next
+        } else if (bucketIterator.hasNext) {
+          return bucketIterator.next.first
+        } else {
+          return null
+        }
+      }
+    }
+
+    public construct(visible HashSet<K> set) {
+      reset()
+    }
+
+    public reset() => this {
+      position = 0
+      bucketIterator = set.buckets.iterator
+      valueIterator = bucketIterator.hasNext ? bucketIterator.stepNext.iterator : null
+    }
+  }
 }
