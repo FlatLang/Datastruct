@@ -140,6 +140,13 @@ class HashSet<T extends EqualsOperator> implements List<T> {
     getBucket(value).add(value)
   }
 
+  public addIfNotExists(T value) => false {
+    if (!contains(value)) {
+      add(value)
+      return true
+    }
+  }
+
   public get(T value) => getBucket(value).firstWhere(x => { x && x.equals(value) })
 
   public remove(T value) -> T => null {
