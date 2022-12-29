@@ -3,4 +3,7 @@ package flat/datastruct
 data class Pair<Key, Value> {
   visible Key key
   visible Value value
+
+  public equals(Object other) => (other || !this) && other.class.isOfType(Pair.class) && equals((Pair)other)
+  public equals(Pair other) => (other || !this) && key.equals(other.key) && value.equals(other.value)
 }
