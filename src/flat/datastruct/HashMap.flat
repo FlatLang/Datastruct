@@ -200,7 +200,7 @@ class HashMap<K, V> implements List<Pair<K, V>> {
   }
 
   getBucket(K key) => buckets[(Int)(key.hashCodeLong & (buckets.count - 1))]
-  getPair(K key) => getBucket(key).filter(x => x && x.key.equals(key)).first
+  getPair(K key) => getBucket(key).filter({ _x && _x.key.equals(key) }).first
 
   public remove(K key) -> V => null {
     if (!key) return null
@@ -273,7 +273,7 @@ class HashMap<K, V> implements List<Pair<K, V>> {
 
   public toJson(Bool: format = false, String tab = "\t") -> String {
     if (format) {
-      let values = map(p => "#{formatJsonString(p.key.toString())}: #{mapJsonValue(p.value, format, tab)}")
+      let values = map({ "#{formatJsonString(_x.key.toString())}: #{mapJsonValue(_x.value, format, tab)}" })
         .join(",\n")
         .indent(tab: tab)
 
@@ -283,7 +283,7 @@ class HashMap<K, V> implements List<Pair<K, V>> {
         }
         |"
     } else {
-      let values = map(p => "#{formatJsonString(p.key.toString())}:" + mapJsonValue(p.value, format, tab)).join(",")
+      let values = map({ "#{formatJsonString(_x.key.toString())}:" + mapJsonValue(_x.value, format, tab) }).join(",")
       return "{#{values}}"
     }
   }

@@ -38,5 +38,5 @@ class ImmutableHashMap<K extends EqualsOperator, V> implements List<Pair<K, V>> 
 
   public containsKey(K key) => map.containsKey(key)
 
-  public toString() => this.class.location + " {" + map.map(p => { p.key + ": " + p.value }).join(", ") + "}"
+  public toString() => this.class.location + " {" + map.map({ _x.key + ": " + _x.value }).join(", ") + "}"
 }

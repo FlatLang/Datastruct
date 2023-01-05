@@ -147,7 +147,7 @@ class HashSet<T extends EqualsOperator> implements List<T> {
     }
   }
 
-  public get(T value) => getBucket(value).firstWhere(x => { x && x.equals(value) })
+  public get(T value) => getBucket(value).firstWhere({ _x && _x.equals(value) })
 
   public remove(T value) -> T => null {
     T[] bucket = getBucket(value)
