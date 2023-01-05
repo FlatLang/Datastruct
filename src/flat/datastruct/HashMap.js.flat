@@ -98,9 +98,9 @@ class HashMap<K, V> {
       map = {};
     }
 
-    forEach((entry) => {
+    forEach({
       external {
-        map[#{toJsonValue(entry.key)}] = #{toJsonValue(entry.value)};
+        map[#{toJsonValue(_x.key)}] = #{toJsonValue(_x.value)};
       }
     })
 

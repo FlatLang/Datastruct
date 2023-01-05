@@ -42,9 +42,7 @@ class HashMap<K, V> implements List<Pair<K, V>> {
   public construct(Array<Pair<K, V>> entries, Int bucketCount = 5, private Int bucketSize = 5) {
     this(bucketCount, bucketSize)
 
-    entries.forEach((pair) => {
-      add(pair.key, pair.value)
-    })
+    entries.forEach({ add(_x.key, _x.value) })
   }
 
   public add(K key, V value) => this[key] = value
@@ -80,7 +78,7 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     return pair && pair.value == value.value
   }
 
-  override public any(func(Pair<K, V>) -> Bool) => false {
+  override public any(func(Pair<K, V> x) -> Bool) => false {
     for (bucket in buckets) {
       for (pair in bucket) {
         if (pair && func(pair)) {
@@ -90,7 +88,7 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     }
   }
 
-  override public all(func(Pair<K, V>) -> Bool, Bool stopOnContradiction = true) -> Bool {
+  override public all(func(Pair<K, V> x) -> Bool, Bool stopOnContradiction = true) -> Bool {
     var contradiction = false
 
     for (bucket in buckets) {
@@ -108,7 +106,7 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     return !contradiction
   }
 
-  override public map<Out>(func(Pair<K, V>, Int, HashMap<K, V>) -> Out) -> Out[] {
+  override public map<Out>(func(Pair<K, V> x, Int i, HashMap<K, V> map) -> Out) -> Out[] {
     let array = Out[]
 
     var Int i = 0
@@ -124,17 +122,15 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     return array
   }
 
-  public mapValues<Out>(func(Pair<K, V>, Int, HashMap<K, V>) -> Out) -> HashMap<K, Out> {
+  public mapValues<Out>(func(Pair<K, V> x, Int i, HashMap<K, V> map) -> Out) -> HashMap<K, Out> {
     let map = HashMap<K, Out>()
 
-    forEach((pair, index) => {
-      map.add(pair.key, func(pair, index, this))
-    })
+    forEach({ map.add(_x.key, func(_x, _i, this)) })
 
     return map
   }
 
-  override public filter(func(Pair<K, V>, Int, HashMap<K, V>) -> Bool) -> Pair<K, V>[] {
+  override public filter(func(Pair<K, V> x, Int i, HashMap<K, V> map) -> Bool) -> Pair<K, V>[] {
     let array = Pair<K, V>[]
 
     var Int i = 0
@@ -179,7 +175,7 @@ class HashMap<K, V> implements List<Pair<K, V>> {
   override public take(Int num) => map({ _ }).take(num)
   override public reverse() => map({ _ }).reverse()
 
-  override public firstWhere(func(Pair<K, V>) -> Bool) -> Pair<K, V> => null//=>
+  override public firstWhere(func(Pair<K, V> x) -> Bool) -> Pair<K, V> => null//=>
   //buckets.firstNonNull({ _.firstWhere(pair -> pair && func(pair)) })
   {
     for (bucket in buckets) {
@@ -191,7 +187,7 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     }
   }
 
-  override public forEach(func(Pair<K, V>, Int, HashMap<K, V>)) => this {
+  override public forEach(func(Pair<K, V> x, Int i, HashMap<K, V> map)) => this {
     var Int i = 0
 
     for (bucket in buckets) {
@@ -241,7 +237,7 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     }
   }
 
-  public removeWhere(func(Pair<K, V>, Int, HashMap<K, V>) -> Bool) -> Pair<K, V>[] {
+  public removeWhere(func(Pair<K, V> x, Int i, HashMap<K, V> map) -> Bool) -> Pair<K, V>[] {
     return filter(func):forEach({ remove(_.key) })
   }
 
