@@ -251,10 +251,13 @@ class HashMap<K, V> implements List<Pair<K, V>> {
 
   formatJsonString(var String value) -> String {
     value = "#{value}"
-    external {
+    external js {
       #{value.chars.data} = #{value.chars.data}.replace(/[\\]/g, "\\\\");
     }
-    let sanitized = value//value.replace("\"", "\\\"")
+    external java {
+      #{value.chars.string} = #{value.chars.string}.replace("\\", "\\\\");
+    }
+    let sanitized = value
 
     return "\"#{sanitized}\""
   }
