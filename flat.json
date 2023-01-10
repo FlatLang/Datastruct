@@ -4,9 +4,6 @@
   "description": "Flat Datastruct Library",
   "author": "Braden Steffaniak",
   "license": "ISC",
-  "scripts": {
-    "test": "node dist/test.js"
-  },
   "sources": {
     "main": {
       "source": "src",
