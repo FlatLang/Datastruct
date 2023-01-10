@@ -67,4 +67,4 @@ jobs:
 
       - name: Run Datastruct Test
         run: |
-          node airship.js run test
+          node airship.js run test -t es6
