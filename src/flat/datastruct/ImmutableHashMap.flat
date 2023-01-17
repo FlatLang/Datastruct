@@ -1,9 +1,8 @@
 package flat/datastruct
 
 import flat/datastruct/list/List
-import flat/operators/EqualsOperator
 
-class ImmutableHashMap<K extends EqualsOperator, V> implements List<Pair<K, V>> {
+class ImmutableHashMap<K, V> implements List<Pair<K, V>> {
   HashMap<K, V> map
 
   visible Int count => map.count
