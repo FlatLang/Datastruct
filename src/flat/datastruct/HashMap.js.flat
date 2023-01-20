@@ -5,7 +5,7 @@ import flat/primitive/Primitive
 
 class HashMap<K, V> {
   public static jsObjectToFlatHashMap(Object obj) -> HashMap<String, Object> {
-    native var Char[] key
+    native_array native var Char[] key
     native var Object value
 
     let map = HashMap<String, Object>()
@@ -25,7 +25,7 @@ class HashMap<K, V> {
 
   static fromJsonValue(native external_name Object obj) -> Object {
     var Object value
-    native var Char[] data
+    native_array native var Char[] data
     native var Long num
     native var Bool boolValue
 
