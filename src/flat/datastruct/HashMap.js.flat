@@ -6,15 +6,16 @@ import flat/primitive/Primitive
 class HashMap<K, V> {
   public static jsObjectToFlatHashMap(Object obj) -> HashMap<String, Object> {
     native_array native var Char[] key
-    native var Object value
+    native var Object nativeValue
+    var Object value
 
     let map = HashMap<String, Object>()
 
     external {
       Object.entries(obj).forEach((entry) => {
         #{key} = entry[0];
-        #{value} = entry[1];
-        #{value} = #{fromJsonValue(value)};
+        #{nativeValue} = entry[1];
+        #{value} = #{fromJsonValue(nativeValue)};
 
         #{map.add(String(key), value)};
       });
