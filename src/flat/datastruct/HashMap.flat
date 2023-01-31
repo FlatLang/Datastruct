@@ -31,15 +31,26 @@ class HashMap<K, V> implements List<Pair<K, V>> {
 
   visible HashMapIterator<K, V> iterator => HashMapIterator(this)
 
-  public construct(Int bucketCount = 5, private Int bucketSize = 5) {
+  public construct(
+    Int bucketCount = 5,
+    private Int bucketSize = 5
+  ) {
     buckets = Array<Array<Pair<K, V>>>(bucketCount).map({ Array<Pair<K, V>>(bucketSize) })
   }
 
-  public construct(HashMap<K, V> source, Int bucketCount = 5, private Int bucketSize = 5) {
+  public construct(
+    HashMap<K, V> source,
+    Int bucketCount = 5,
+    private Int bucketSize = 5
+  ) {
     this(source.entries, bucketCount, bucketSize)
   }
 
-  public construct(Array<Pair<K, V>> entries, Int bucketCount = 5, private Int bucketSize = 5) {
+  public construct(
+    Array<Pair<K, V>> entries,
+    Int bucketCount = 5,
+    private Int bucketSize = 5
+  ) {
     this(bucketCount, bucketSize)
 
     entries.forEach({ add(_x.key, _x.value) })
