@@ -24,7 +24,7 @@ class HashMap<K, V> {
     return map
   }
 
-  static fromJsonValue(native external_name Object obj) -> Object {
+  public static fromJsonValue(native external_name Object obj) -> Object {
     var Object value
     native_array native var Char[] data
     native_array var Object[] arrayData
