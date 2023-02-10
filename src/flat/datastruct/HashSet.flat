@@ -5,11 +5,14 @@ import flat/datastruct/list/Iterator
 import flat/datastruct/list/NoSuchElementException
 
 class HashSet<T> implements List<T> {
+  visible var Int count <=> count
+
   T[][] buckets
 
-  visible Int size
-
   visible HashSetIterator<T> iterator => HashSetIterator(this)
+
+  public T first => null
+  public T last => null
 
   public construct(Int bucketCount = 5, private Int bucketSize = 5) {
     buckets = Array(bucketCount).map({ Array<T>(bucketSize) })
@@ -22,22 +25,25 @@ class HashSet<T> implements List<T> {
 
   override public toArray() => map({ _ })
 
-  override public any(func(T) -> Bool) => false {
+  override public any(anyFunc(T x, Int i, HashSet<T> set) -> Bool) => false {
+    var Int i = 0
+
     for (bucket in buckets) {
       for (v in bucket) {
-        if (v && func(v)) {
+        if (v && anyFunc(v, i++, this)) {
           return true
         }
       }
     }
   }
 
-  override public all(func(T) -> Bool, Bool stopOnContradiction = true) -> Bool {
+  override public all(allFunc(T x, Int i, HashSet<T> set) -> Bool, Bool stopOnContradiction = true) -> Bool {
     var contradiction = false
+    var Int i = 0
 
     for (bucket in buckets) {
       for (v in bucket) {
-        if (v && !func(v)) {
+        if (v && !allFunc(v, i++, this)) {
           if (stopOnContradiction) {
             return false
           }
@@ -66,7 +72,7 @@ class HashSet<T> implements List<T> {
     return array
   }
 
-  override public filter(func(T, Int, HashSet<T>) -> Bool) -> T[] {
+  override public filter(func(T x, Int i, HashSet<T> set) -> Bool) -> T[] {
     let array = T[]
 
     var Int i = 0
@@ -111,17 +117,19 @@ class HashSet<T> implements List<T> {
   override public take(Int num) => map({ _ }).take(num)
   override public reverse() => map({ _ }).reverse()
 
-  override public firstWhere(func(T) -> Bool) -> T => null {
+  override public firstWhere(func(T x, Int i, HashSet<T> set) -> Bool) -> T => null {
+    var Int i = 0
+
     for (bucket in buckets) {
       for (v in bucket) {
-        if (v && func(v)) {
+        if (v && func(v, i++, this)) {
           return v
         }
       }
     }
   }
 
-  override public forEach(func(T, Int, HashSet<T>)) => this {
+  override public forEach(func(T x, Int i, HashSet<T> set)) => this {
     var Int i = 0
 
     for (bucket in buckets) {
@@ -136,12 +144,16 @@ class HashSet<T> implements List<T> {
   getBucket(T value) => buckets[(Int)(value.hashCodeLong & (buckets.count - 1))]
 
   public add(T value) => value {
-    getBucket(value).add(value)
+    addIfNotExists(value)
   }
 
   public addIfNotExists(T value) => false {
-    if (!contains(value)) {
-      add(value)
+    let bucket = getBucket(value)
+
+    if (!bucket.contains(value)) {
+      bucket.add(value)
+      count = count + 1
+
       return true
     }
   }
@@ -156,6 +168,7 @@ class HashSet<T> implements List<T> {
     for (v in bucket) {
       if (v && v.equals(value)) {
         bucket.remove(i)
+        count = count - 1
 
         return v
       }
@@ -167,6 +180,15 @@ class HashSet<T> implements List<T> {
   override public contains(T value) => value && get(value)
 
   public toString() => "HashSet [#{join(", ")}]"
+
+  override public equals(Object other) => (other || !this) && other.class.isOfType(HashSet.class) && equals((HashSet)other)
+  public equals(HashSet<T> other) => true {
+    if (count != other.count) return false
+
+    for (element in this) {
+      if (!other.contains(element)) return false
+    }
+  }
 
   class HashSetIterator<K> implements Iterator<K> {
     visible var Int position
