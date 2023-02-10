@@ -256,8 +256,6 @@ class HashMap<K, V> implements List<Pair<K, V>> {
 
   public clone() => HashMap<K, V>(this)
 
-  public toImmutable() => ImmutableHashMap<K, V>(this)
-
   public toString() => "#{class.location} #{toJson()}"
 
   formatJsonString(var String value) -> String {
