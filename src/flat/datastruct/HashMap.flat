@@ -300,6 +300,15 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     }
   }
 
+  override public equals(Object other) => (other || !this) && other.class.isOfType(HashMap.class) && equals((HashMap)other)
+  public equals(HashMap<K, V> other) => true {
+    if (count != other.count) return false
+
+    for (element in this) {
+      if (!other.contains(element)) return false
+    }
+  }
+
   class HashMapIterator<K, V> implements Iterator<Pair<K, V>> {
     visible var Int position
 
