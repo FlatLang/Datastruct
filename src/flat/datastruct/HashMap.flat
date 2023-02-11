@@ -262,9 +262,11 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     value = "#{value}"
     external js {
       #{value.chars.data} = #{value.chars.data}.replace(/[\\]/g, "\\\\");
+      #{value.chars.data} = #{value.chars.data}.replace(/["]/g, "\\\"");
     }
     external java {
       #{value.chars.string} = #{value.chars.string}.replace("\\", "\\\\");
+      #{value.chars.string} = #{value.chars.string}.replace("\"", "\\\"");
     }
     let sanitized = value
 
