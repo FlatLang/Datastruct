@@ -49,6 +49,8 @@ class HashMap<K, V> {
         });
         #{arrayCount} = obj.length;
         #{value} = #{Array(arrayData, arrayCount)};
+      } else if (obj === null) {
+        #{value} = #{null};
       } else if (typeof obj === 'object') {
         #{value} = obj;
         #{value} = #{jsObjectToFlatHashMap(value)};
