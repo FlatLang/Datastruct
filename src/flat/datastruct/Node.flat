@@ -1,6 +1,6 @@
 package flat/datastruct
 
-import flat/datastruct/list/Queue
+import flat/datastruct/list
 
 class Node<E> {
   visible Node<E>[] children

@@ -2,24 +2,23 @@ package flat/datastruct/list
 
 class LinkedList<E> implements List<E>
 {
-	var ListNode<E>	start
-	var ListNode<E>	current
+	visible var ListNode<E>	start
+	visible var ListNode<E>	current
 
 	var visible Int size
 
 	visible LinkedListIterator<E> iterator => LinkedListIterator(this)
 
-	public ListNode<E> first => start {
+	public E first => start?.data {
 		set {
-			value.next = start
-			start = value
+      start = ListNode(value, start)
 		}
 	}
 
-	public ListNode<E> last => current {
+	public E last => current?.data {
 		set {
-			current.next = value
-			current = value
+      current.next = ListNode(value)
+			current = current.next
 		}
 	}
 

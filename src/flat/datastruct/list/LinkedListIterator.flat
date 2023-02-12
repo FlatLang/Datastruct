@@ -13,7 +13,7 @@ class LinkedListIterator<E> implements Iterator<E> {
   visible E stepNext {
     get {
       if (hasNext) {
-        E data = position.data
+        let data = position.data
 
         previousNode = position
         position = position.next
@@ -34,6 +34,7 @@ class LinkedListIterator<E> implements Iterator<E> {
   }
 
   public reset() => this {
-    position = list.first
+    position = list.start
+    previousNode = null
   }
 }
