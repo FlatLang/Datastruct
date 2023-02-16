@@ -89,22 +89,25 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     return pair && pair.value == value.value
   }
 
-  override public any(func(Pair<K, V> x) -> Bool) => false {
+  override public any(func(Pair<K, V> x, Int i, HashMap<K, V> map) -> Bool) => false {
+    var Int i = 0
+
     for (bucket in buckets) {
       for (pair in bucket) {
-        if (pair && func(pair)) {
+        if (pair && func(pair, i++, this)) {
           return true
         }
       }
     }
   }
 
-  override public all(func(Pair<K, V> x) -> Bool, Bool stopOnContradiction = true) -> Bool {
+  override public all(func(Pair<K, V> x, Int i, HashMap<K, V> map) -> Bool, Bool stopOnContradiction = true) -> Bool {
     var contradiction = false
+    var Int i = 0
 
     for (bucket in buckets) {
       for (pair in bucket) {
-        if (pair && !func(pair)) {
+        if (pair && !func(pair, i++, this)) {
           if (stopOnContradiction) {
             return false
           }
@@ -186,12 +189,12 @@ class HashMap<K, V> implements List<Pair<K, V>> {
   override public take(Int num) => map({ _ }).take(num)
   override public reverse() => map({ _ }).reverse()
 
-  override public firstWhere(func(Pair<K, V> x) -> Bool) -> Pair<K, V> => null//=>
-  //buckets.firstNonNull({ _.firstWhere(pair -> pair && func(pair)) })
-  {
+  override public firstWhere(func(Pair<K, V> x, Int i, HashMap<K, V> map) -> Bool) -> Pair<K, V> => null {
+    var Int i = 0
+
     for (bucket in buckets) {
       for (pair in bucket) {
-        if (pair && func(pair)) {
+        if (pair && func(pair, i++, this)) {
           return pair
         }
       }
