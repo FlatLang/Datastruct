@@ -252,7 +252,7 @@ class HashMap<K, V> implements List<Pair<K, V>> {
   }
 
   public removeWhere(func(Pair<K, V> x, Int i, HashMap<K, V> map) -> Bool) -> Pair<K, V>[] {
-    return filter(func):forEach({ remove(_.key) })
+    return filter({ func(_, _, this) }).forEach({ remove(_.key) })
   }
 
   public containsKey(K key) => key && getPair(key)
