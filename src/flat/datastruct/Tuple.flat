@@ -3,7 +3,7 @@ package flat/datastruct
 import flat/datastruct/list/List
 import flat/datastruct/list/ArrayIterator
 
-class Tuple implements List<Object> {
+class implements List<Object> {
 	visible Object[] items
 
 	public construct(visible Object[] items) {}
