@@ -87,7 +87,7 @@ class LinkedList<E> implements List<E>
 		return array
 	}
 
-	override public map<Out>(mapFunc(E, Int, LinkedList<E>) -> Out) -> LinkedList<Out> {
+	override public map<Out>(mapFunc(E x, Int i, LinkedList<E> list) -> Out) -> LinkedList<Out> {
 		LinkedList<Out> array = LinkedList()
 
 		var Int i = 0
@@ -99,7 +99,7 @@ class LinkedList<E> implements List<E>
 		return array
 	}
 
-	override public forEach(func(E, Int, LinkedList<E>)) => this {
+	override public forEach(func(E x, Int i, LinkedList<E> list)) => this {
 		var Int i = 0
 
 		for (element in this) {
@@ -107,9 +107,11 @@ class LinkedList<E> implements List<E>
 		}
 	}
 
-	override public any(anyFunc(E) -> Bool) -> Bool {
+	override public any(anyFunc(E x, Int i, LinkedList<E> list) -> Bool) -> Bool {
+		var Int i = 0
+
 		for (element in this) {
-			if (anyFunc(element)) {
+			if (anyFunc(element, i++, this)) {
 				return true
 			}
 		}
@@ -117,11 +119,12 @@ class LinkedList<E> implements List<E>
 		return false
 	}
 
-	override public all(allFunc(E) -> Bool, Bool stopOnContradiction = true) -> Bool {
+	override public all(allFunc(E x, Int i, LinkedList<E> list) -> Bool, Bool stopOnContradiction = true) -> Bool {
 		var contradiction = false
+		var Int i = 0
 
 		for (element in this) {
-			if (!allFunc(element)) {
+			if (!allFunc(element, i++, this)) {
 				if (stopOnContradiction) {
 					return false
 				}
@@ -133,7 +136,7 @@ class LinkedList<E> implements List<E>
 		return !contradiction
 	}
 
-	override public filter(filterFunc(E, Int, LinkedList<E>) -> Bool) -> LinkedList<E> {
+	override public filter(filterFunc(E x, Int i, LinkedList<E> list) -> Bool) -> LinkedList<E> {
 		LinkedList<E> filtered = LinkedList()
 
 		var Int i = 0
@@ -164,7 +167,7 @@ class LinkedList<E> implements List<E>
 	}
 
 	override public skip(Int howMany) -> LinkedList<E> {
-		E[] list = Array()
+		LinkedList<E> list = LinkedList()
 
 		var Int i = 0
 
@@ -175,9 +178,11 @@ class LinkedList<E> implements List<E>
 		return list
 	}
 
-	override public firstWhere(func(E) -> Bool) -> E {
-		for (element in this) {
-			if (func(element)) {
+	override public firstWhere(func(E x, Int i, LinkedList<E> list) -> Bool) -> E {
+		var Int i = 0
+
+    for (element in this) {
+			if (func(element, i++, this)) {
 				return element
 			}
 		}
