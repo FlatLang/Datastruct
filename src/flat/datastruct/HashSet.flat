@@ -182,11 +182,12 @@ class HashSet<T> implements List<T> {
   public toString() => "HashSet [#{join(", ")}]"
 
   override public equals(Object other) => (other || !this) && other.class.isOfType(HashSet.class) && equals((HashSet)other)
-  public equals(HashSet<T> other) => true {
+  public equals(HashSet other) => true {
     if (count != other.count) return false
 
     for (element in this) {
-      if (!other.contains(element)) return false
+      Object obj = element
+      if (!other.contains(obj)) return false
     }
   }
 
