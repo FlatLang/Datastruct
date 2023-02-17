@@ -23,7 +23,7 @@ class Tuple implements List<Object> {
 	override public skip(Int howMany) => items.skip(howMany)
 	override public firstWhere(func(Object) -> Bool) => items.firstWhere(func)
 	override public reverse() => Tuple(items.reverse())
-	override public map<Out>(mapFunc(Object, Int, List<Object>) -> Out) -> List<Object> {
+	override public map<Out>(mapFunc(Object, Int, List<Object>) -> Out) -> List<Out> {
 		return items.map(mapFunc)
 	}
 }
