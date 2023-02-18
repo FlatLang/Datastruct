@@ -15,7 +15,7 @@ class BinaryNode<E extends Comparable> extends Node<E> {
 
   public construct(E data = null) => this(data, 2)
 
-  construct(E data, Int size) => super(data, size)
+  construct(E data = null, Int size = 2) => super(data, size)
 
   getNode(Int index) =>
   	children.count > index ?
