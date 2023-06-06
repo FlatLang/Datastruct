@@ -11,23 +11,23 @@ class LinkedList<E> implements List<E>
 
 	public E first => start?.data {
 		set {
-      start = ListNode(value, start)
+            start = ListNode(value, start)
 		}
 	}
 
 	public E last => current?.data {
 		set {
-      current.next = ListNode(value)
+            current.next = ListNode(value)
 			current = current.next
 		}
 	}
 
 	public addAll(E[] data) -> LinkedList<E> {
-	    for (d in data) {
-	        add(d)
-	    }
+	        for (d in data) {
+	                add(d)
+	        }
 
-	    return this
+	        return this
 	}
 
 	public add(E data) -> LinkedList<E> {
@@ -37,7 +37,7 @@ class LinkedList<E> implements List<E>
 			current.next = node
 		}
 		else {
-			start   = node
+			start     = node
 			current = node
 		}
 
@@ -54,7 +54,7 @@ class LinkedList<E> implements List<E>
 		}
 
 		var ListNode<E> prev = start
-		var ListNode<E> cur  = start.next
+		var ListNode<E> cur    = start.next
 
 		while (cur) {
 			E d = cur.data
@@ -72,7 +72,7 @@ class LinkedList<E> implements List<E>
 	}
 
 	override public contains(E value) -> Bool {
-	    return any({ _ == value })
+	        return any({ _ == value })
 	}
 
 	override public toArray() -> E[] {
@@ -181,7 +181,7 @@ class LinkedList<E> implements List<E>
 	override public firstWhere(func(E x, Int i, LinkedList<E> list) -> Bool) -> E {
 		var Int i = 0
 
-    for (element in this) {
+        for (element in this) {
 			if (func(element, i++, this)) {
 				return element
 			}

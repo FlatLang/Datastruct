@@ -3,7 +3,7 @@ package flat/datastruct/list
 import flat/datastruct/list/NoSuchElementException
 
 class EmptyStackException extends NoSuchElementException {
-  public construct(String message = "") {
-    super(message)
-  }
+    public construct(String message = "") {
+        super(message)
+    }
 }
