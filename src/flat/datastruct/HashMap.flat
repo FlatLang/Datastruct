@@ -261,46 +261,19 @@ class HashMap<K, V> implements List<Pair<K, V>> {
 
     public toString() => "#{class.location} #{toJson()}"
 
-    formatJsonString(var String value) -> String {
-        value = "#{value}"
-        external js {
-            #{value.chars.data} = #{value.chars.data}.replace(/[\\]/g, "\\\\");
-            #{value.chars.data} = #{value.chars.data}.replace(/["]/g, "\\\"");
-        }
-        external java {
-            #{value.chars.string} = #{value.chars.string}.replace("\\", "\\\\");
-            #{value.chars.string} = #{value.chars.string}.replace("\"", "\\\"");
-        }
-        let sanitized = value
-
-        return "\"#{sanitized}\""
-    }
-
-    mapJsonValue(Object value, Bool format, String tab) -> String {
-        if (value && value.class.isOfType(String.class)) {
-            return formatJsonString(value.toString())
-        } else if (value && value.class.isOfType(HashMap.class)) {
-            let HashMap valueMap = (HashMap)value
-
-            return valueMap.toJson(format, tab)
-        } else {
-            return value.toString()
-        }
-    }
-
-    public toJson(Bool: format = false, String tab = "\t") -> String {
+    public toJson(Bool: format = false, String: tab = "\t") -> String {
         if (format) {
-            let values = map({ "#{formatJsonString(_x.key.toString())}: #{mapJsonValue(_x.value, format, tab)}" })
+            let values = map({ "#{_x.key.toString().toJson()}: #{_x.value.toJson(format, tab)}" })
                 .join(",\n")
                 .indent(tab: tab)
 
             return "|
                 {
-                #{tab}#{values}
+                #{values}
                 }
                 |"
         } else {
-            let values = map({ "#{formatJsonString(_x.key.toString())}:" + mapJsonValue(_x.value, format, tab) }).join(",")
+            let values = map({ "#{_x.key.toString().toJson()}:#{_x.value.toJson(format, tab)}" }).join(",")
             return "{#{values}}"
         }
     }
